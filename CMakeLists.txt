@@ -11,5 +11,5 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 include_directories(include)
 file(GLOB SOURCES "src/*.cpp")
 
-add_executable(${EXECUTABLE_NAME} ${SOURCES})
+add_executable(${EXECUTABLE_NAME} ${SOURCES} include/State.h src/MenuState.cpp include/MenuState.h)
 target_link_libraries(${EXECUTABLE_NAME} sfml-graphics sfml-window sfml-system)

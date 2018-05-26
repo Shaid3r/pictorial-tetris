@@ -1,31 +1,34 @@
 #include <MenuState.h>
 #include "Game.h"
 
-const sf::VideoMode Game::desktop = sf::VideoMode().getFullscreenModes()[0];
 const std::string Game::TITLE = "Tetris";
 
-Game::Game() {
-    window = std::make_unique<sf::RenderWindow>(desktop, TITLE, sf::Style::Fullscreen);
-    window->setFramerateLimit(60);
+Game &Game::getInstance() {
+    static Game game;
+    return game;
 }
 
 void Game::run() {
     gsm.set(std::make_unique<MenuState>(gsm));
     sf::Clock clock;
     clock.restart();
-    while (window->isOpen()) {
+    while (view.getWindow().isOpen()) {
         handleInput();
         gsm.update(clock.restart().asSeconds());
-        gsm.render(*window);
-        window->display();
+        gsm.render(view.getWindow());
+        view.getWindow().display();
     }
 }
 
 void Game::handleInput() {
     sf::Event event;
-    while (window->pollEvent(event)) {
+    while (view.getWindow().pollEvent(event)) {
         if (event.type == sf::Event::Closed)
-            window->close();
+            view.getWindow().close();
         gsm.handleInput(event);
     }
+}
+
+View &Game::getView() {
+    return Game::getInstance().view;
 }

@@ -1,28 +1,30 @@
 #pragma once
 
 #include <memory>
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+
 #include "GameStateManager.h"
+#include "Config.h"
+#include "View.h"
 
 class Game {
 public:
-    static Game& getInstance() {
-        static Game game;
-        return game;
-    }
+    static Game &getInstance();
+    static View &getView();
 
     void run();
 
+    static const std::string TITLE;
 private:
-    Game();
-    Game(const Game& game) = delete;
-    void operator=(const Game& game) = delete;
+    Game() {};
+    Game(const Game &game) = delete;
+    void operator=(const Game &game) = delete;
 
     void handleInput();
 
-    static const sf::VideoMode desktop;
-    static const std::string TITLE;
+    View view;
+    Config config;
     GameStateManager gsm;
-    std::unique_ptr<sf::RenderWindow> window;
 };

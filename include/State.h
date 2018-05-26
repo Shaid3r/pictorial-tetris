@@ -15,4 +15,5 @@ public:
 
 protected:
     GameStateManager& gsm;
+    bool updated{true};
 };

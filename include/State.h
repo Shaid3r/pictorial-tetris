@@ -2,18 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 
-class GameStateManager;
-
 class State {
 public:
-    State(GameStateManager& gsm) : gsm(gsm) {}
+    State() = default;
     virtual ~State() {}
 
     virtual void handleInput(sf::Event &event) = 0;
     virtual void update(float dt) = 0;
-    virtual void render(sf::RenderTarget &target) = 0;
+    virtual void render() = 0;
 
 protected:
-    GameStateManager& gsm;
     bool updated{true};
 };

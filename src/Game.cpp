@@ -8,14 +8,26 @@ Game &Game::getInstance() {
     return game;
 }
 
+View &Game::getView() {
+    return Game::getInstance().view;
+}
+
+Config &Game::getConfig() {
+    return Game::getInstance().config;
+}
+
+GameStateManager &Game::getGSM() {
+    return Game::getInstance().gsm;
+}
+
 void Game::run() {
-    gsm.set(std::make_unique<MenuState>(gsm));
+    gsm.set(std::make_unique<MenuState>());
     sf::Clock clock;
     clock.restart();
     while (view.getWindow().isOpen()) {
         handleInput();
         gsm.update(clock.restart().asSeconds());
-        gsm.render(view.getWindow());
+        gsm.render();
         view.getWindow().display();
     }
 }
@@ -27,8 +39,4 @@ void Game::handleInput() {
             view.getWindow().close();
         gsm.handleInput(event);
     }
-}
-
-View &Game::getView() {
-    return Game::getInstance().view;
 }

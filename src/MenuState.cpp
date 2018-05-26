@@ -1,9 +1,8 @@
 #include <Game.h>
 #include "MenuState.h"
 
-MenuState::MenuState(GameStateManager &gsm) : State(gsm) {
+MenuState::MenuState() {
     View &view = Game::getView();
-
     const int WIDTH = view.getWidth();
     const int HEIGHT = view.getHeight();
 
@@ -29,7 +28,6 @@ MenuState::MenuState(GameStateManager &gsm) : State(gsm) {
     buttons[EXIT].setString("EXIT");
 
     buttons[START].select();
-    updated = true;
 }
 
 void MenuState::handleInput(sf::Event &event) {
@@ -53,14 +51,16 @@ void MenuState::handleInput(sf::Event &event) {
 
 void MenuState::update(float dt) {}
 
-void MenuState::render(sf::RenderTarget &target) {
+void MenuState::render() {
     if (updated) {
+        View &view = Game::getView();
+        sf::RenderTarget &target = view.getWindow();
         target.clear(COLOR_BACKGROUND);
 
-        sf::Text title("TETRIS", Game::getView().getFont(), 80);
+        sf::Text title("TETRIS", view.getFont(), 80);
         title.setPosition(
-                (Game::getView().getWidth() - title.getLocalBounds().width) / 2,
-                Game::getView().getHeight() * 0.1);
+                (view.getWidth() - title.getLocalBounds().width) / 2,
+                view.getHeight() * 0.1);
         target.draw(title);
 
         for (auto &button : buttons)

@@ -12,7 +12,7 @@ class GameStateManager {
 public:
     void handleInput(sf::Event &event);
     void update(float dt);
-    void render(sf::RenderTarget& target);
+    void render();
 
     void push(std::unique_ptr<State> state);
     void pop();

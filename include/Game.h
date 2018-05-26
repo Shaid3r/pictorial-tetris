@@ -13,10 +13,13 @@ class Game {
 public:
     static Game &getInstance();
     static View &getView();
+    static Config &getConfig();
+    static GameStateManager &getGSM();
 
     void run();
 
     static const std::string TITLE;
+
 private:
     Game() {};
     Game(const Game &game) = delete;

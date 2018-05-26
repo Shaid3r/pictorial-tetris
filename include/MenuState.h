@@ -5,16 +5,17 @@
 
 class MenuState : public State {
 public:
-    MenuState(GameStateManager &gsm);
+    MenuState();
 
     void handleInput(sf::Event &event) override;
     void update(float dt) override;
-    void render(sf::RenderTarget &target) override;
-
-    void selectNext();
-    void selectPrevious();
+    void render() override;
 
 private:
+    void selectNext();
+    void selectPrevious();
+    void enter();
+
     enum BUTTONS {
         START,
         HELP,
@@ -25,6 +26,4 @@ private:
     const sf::Color COLOR_BACKGROUND{12, 24, 24};
     std::vector<Button> buttons;
     unsigned int selected{0};
-
-    void enter();
 };

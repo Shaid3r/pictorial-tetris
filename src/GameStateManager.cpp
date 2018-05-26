@@ -1,3 +1,4 @@
+#include <Game.h>
 #include "State.h"
 #include "GameStateManager.h"
 
@@ -9,8 +10,8 @@ void GameStateManager::update(float dt) {
     states.top()->update(dt);
 }
 
-void GameStateManager::render(sf::RenderTarget &target) {
-    states.top()->render(target);
+void GameStateManager::render() {
+    states.top()->render();
 }
 
 void GameStateManager::pop() {

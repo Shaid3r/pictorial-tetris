@@ -10,10 +10,12 @@ public:
     unsigned int getHeight() const;
     unsigned int getWidth() const;
 
+    sf::Image img;
+    sf::Texture texture;
 private:
-    sf::VideoMode desktop;
-    sf::Font font;
     std::unique_ptr<sf::RenderWindow> window;
+    sf::Font font;
+    sf::VideoMode desktop;
 };
 
 

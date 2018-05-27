@@ -3,11 +3,19 @@
 #include <Game.h>
 #include "Button.h"
 
-Button::Button(float width, float height, const sf::String &text)
+const sf::Color Button::COLOR_SELECTED{255, 0, 0};
+const sf::Color Button::COLOR_DEFAULT{0, 255, 0};
+const sf::Color Button::COLOR_TXT_SELECTED{0, 0, 0};
+const sf::Color Button::COLOR_TXT_DEFAULT{255, 255, 255};
+const unsigned int Button::TEXT_SIZE = 25;
+
+Button::Button(float width, float height, const sf::String &text,
+               unsigned int size)
         : sf::RectangleShape(sf::Vector2f(width, height)),
-          text(text, Game::getView().getFont(), TEXT_SIZE) {
+          text(text, Game::getView().getFont(), size) {
     this->setFillColor(COLOR_DEFAULT);
     this->text.setFillColor(COLOR_TXT_DEFAULT);
+    setString(text);
 }
 
 void Button::select() {
@@ -26,8 +34,13 @@ void Button::setText(sf::Text &text) {
     this->text = text;
 }
 
-void Button::setString(sf::String &&string) {
+void Button::setString(const sf::String &string) {
     text.setString(string);
+    setTextPosition();
+
+}
+
+void Button::setTextPosition() {
     float width = (getLocalBounds().width - text.getLocalBounds().width) / 2.f;
     float height =
             (getLocalBounds().height - text.getLocalBounds().height) / 2.f
@@ -39,4 +52,9 @@ void Button::setString(sf::String &&string) {
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(static_cast<sf::RectangleShape>(*this), states);
     target.draw(text, states);
+}
+
+void Button::setPosition(float x, float y) {
+    Transformable::setPosition(x, y);
+    setTextPosition();
 }

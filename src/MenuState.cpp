@@ -1,4 +1,5 @@
 #include <Game.h>
+#include <StartState.h>
 #include "MenuState.h"
 
 MenuState::MenuState() {
@@ -49,25 +50,25 @@ void MenuState::handleInput(sf::Event &event) {
     }
 }
 
-void MenuState::update(float dt) {}
+void MenuState::update(float) {}
 
 void MenuState::render() {
-    if (updated) {
-        View &view = Game::getView();
-        sf::RenderTarget &target = view.getWindow();
-        target.clear(COLOR_BACKGROUND);
+//    if (updated) {
+    View &view = Game::getView();
+    sf::RenderTarget &target = view.getWindow();
+    target.clear(COLOR_BACKGROUND);
 
-        sf::Text title("TETRIS", view.getFont(), 80);
-        title.setPosition(
-                (view.getWidth() - title.getLocalBounds().width) / 2,
-                view.getHeight() * 0.1);
-        target.draw(title);
+    sf::Text title("TETRIS", view.getFont(), 80);
+    title.setPosition(
+            (view.getWidth() - title.getLocalBounds().width) / 2,
+            view.getHeight() * 0.1);
+    target.draw(title);
 
-        for (auto &button : buttons)
-            target.draw(button);
+    for (auto &button : buttons)
+        target.draw(button);
 
-        updated = false;
-    }
+//        updated = false;
+//    }
 }
 
 void MenuState::selectPrevious() {
@@ -87,13 +88,13 @@ void MenuState::selectNext() {
 void MenuState::enter() {
     switch (selected) {
         case MenuState::START:
-//            gsm.set(std::make_unique<StartState>(gsm));
+            Game::getGSM().set(std::make_unique<StartState>());
             break;
         case MenuState::HELP:
-//            gsm.set(std::make_unique<HelpState>(gsm));
+//            Game::getGSM().set(std::make_unique<HelpState>());
             break;
         case MenuState::TOP10:
-//            gsm.set(std::make_unique<RankingState>(gsm));
+//            Game::getGSM().set(std::make_unique<RankingState>());
             break;
         case MenuState::EXIT:
             Game::getView().getWindow().close();

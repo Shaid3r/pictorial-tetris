@@ -5,24 +5,26 @@
 
 class Button : public sf::RectangleShape {
 public:
-    Button(float width, float height, const sf::String &text = "");
-
-    void select();
+    Button(float width, float height, const sf::String &text = "",
+           unsigned int size = TEXT_SIZE);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
+    void select();
     void unselect();
 
     void setText(sf::Text &text);
-
-    void setString(sf::String &&string);
+    void setString(const sf::String &string);
+    void setPosition(float x, float y);
 
 private:
-    const sf::Color COLOR_SELECTED{255, 0, 0};
-    const sf::Color COLOR_DEFAULT{0, 255, 0};
-    const sf::Color COLOR_TXT_SELECTED{0, 0, 0};
-    const sf::Color COLOR_TXT_DEFAULT{255, 255, 255};
-    const unsigned int TEXT_SIZE = 25;
+    void setTextPosition();
+
+    static const sf::Color COLOR_SELECTED;
+    static const sf::Color COLOR_DEFAULT;
+    static const sf::Color COLOR_TXT_SELECTED;
+    static const sf::Color COLOR_TXT_DEFAULT;
+    static const unsigned int TEXT_SIZE;
 
     sf::Text text;
     bool selected{false};

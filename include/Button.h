@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 class Button : public sf::RectangleShape {
 public:
@@ -18,7 +19,7 @@ public:
     void setPosition(float x, float y);
 
 private:
-    void setTextPosition();
+    bool setTextPosition();
 
     static const sf::Color COLOR_SELECTED;
     static const sf::Color COLOR_DEFAULT;

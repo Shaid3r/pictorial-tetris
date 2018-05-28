@@ -73,5 +73,5 @@ void StartState::selectPrevious() {
 }
 
 void StartState::enter() {
-//    Game::getGSM().push(std::make_unique<ConfigState>());
+    Game::getGSM().push(std::make_unique<ConfigState>());
 }

@@ -71,16 +71,16 @@ void MenuState::render() {
 //    }
 }
 
-void MenuState::selectPrevious() {
+void MenuState::selectNext() {
     buttons[selected].unselect();
-    selected = (selected - 1) % buttons.size();
+    selected = (selected + 1) % buttons.size();
     buttons[selected].select();
     updated = true;
 }
 
-void MenuState::selectNext() {
+void MenuState::selectPrevious() {
     buttons[selected].unselect();
-    selected = (selected + 1) % buttons.size();
+    selected = (selected - 1) % buttons.size();
     buttons[selected].select();
     updated = true;
 }

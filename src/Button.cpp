@@ -36,17 +36,20 @@ void Button::setText(sf::Text &text) {
 
 void Button::setString(const sf::String &string) {
     text.setString(string);
-    setTextPosition();
-
+    for (unsigned int i = 0; !setTextPosition() && i < text.getCharacterSize()/2; ++i)
+        text.setCharacterSize(text.getCharacterSize() - 1);
 }
 
-void Button::setTextPosition() {
+bool Button::setTextPosition() {
     float width = (getLocalBounds().width - text.getLocalBounds().width) / 2.f;
+    if (width < 0) return false;
+
     float height =
             (getLocalBounds().height - text.getLocalBounds().height) / 2.f
-            - TEXT_SIZE * 0.25f;
+            - text.getCharacterSize() * 0.25f;
 
     text.setPosition(getPosition() + sf::Vector2f(width, height));
+    return true;
 }
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const {

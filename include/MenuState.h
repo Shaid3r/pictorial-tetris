@@ -19,10 +19,9 @@ private:
     enum BUTTONS {
         START,
         HELP,
-        TOP10,
         EXIT
     };
 
     std::vector<Button> buttons;
-    unsigned int selected{0};
+    int selected{0};
 };

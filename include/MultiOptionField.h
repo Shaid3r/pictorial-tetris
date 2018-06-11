@@ -23,6 +23,6 @@ private:
     bool setTextOptionPosition();
     sf::Text text_option;
     std::vector<sf::String> options;
-    unsigned int selected_option = 0;
+    int selected_option = 0;
     float percent;
 };

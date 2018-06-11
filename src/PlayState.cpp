@@ -30,7 +30,7 @@ void PlayState::handleInput(sf::Event &event) {
         switch (event.key.code) {
             case sf::Keyboard::Left:
                 position -= 1;
-                 ht = config.getVBlocks() - stackHeight[position] - 1;
+                 ht = config.getBlocks() - stackHeight[position] - 1;
                 if (position < 0 ||
                     current.getPosition().y >= topBegin + elementSiteLen * ht) {
                     position += 1;
@@ -38,8 +38,8 @@ void PlayState::handleInput(sf::Event &event) {
                 break;
             case sf::Keyboard::Right:
                 position += 1;
-                ht = config.getVBlocks() - stackHeight[position] - 1;
-                if (position > config.getVBlocks() - 1 ||
+                ht = config.getBlocks() - stackHeight[position] - 1;
+                if (position > config.getBlocks() - 1 ||
                     current.getPosition().y > topBegin + elementSiteLen * ht) {
                     position -= 1;
                 }
@@ -65,12 +65,12 @@ void PlayState::update(float dt) {
 
     if (isCurrentPlaced) {
         do {
-            currentColumn = rand() % config.getVBlocks();
+            currentColumn = rand() % config.getBlocks();
         } while(unplaced[currentColumn].empty());
 
         current = unplaced[currentColumn].top();
         unplaced[currentColumn].pop();
-        position = config.getVBlocks() / 2.0d;
+        position = config.getBlocks() / 2.0d;
         current.setPosition(leftBegin + position * elementSiteLen,
                             - elementSiteLen);
         rotation = 0;
@@ -80,7 +80,7 @@ void PlayState::update(float dt) {
         isCurrentPlaced = false;
     }
     else {
-        int ht = config.getVBlocks() - stackHeight[position] - 1;
+        int ht = config.getBlocks() - stackHeight[position] - 1;
         double speed = doubleSpeed ?
                        10 * config.getVelocity() : config.getVelocity();
         current.setPosition(leftBegin + position * elementSiteLen,
@@ -94,7 +94,7 @@ void PlayState::update(float dt) {
             stackHeight[currentColumn] += 1;
             isCurrentPlaced = true;
             doubleSpeed = false;
-            if (placed.size() == pow(config.getVBlocks(), 2)) {
+            if (placed.size() == pow(config.getBlocks(), 2)) {
                 Game::getGSM().push(std::make_unique<GameOverState>());
             }
         }
@@ -152,7 +152,7 @@ sf::Color PlayState::toGrayscale(const sf::Color &color) {
 sf::Sprite PlayState::getFragment(int i, int j) {
     double w = Game::getView().getTexture().getSize().x;
     double h = Game::getView().getTexture().getSize().y;
-    int nrOfEl = Game::getConfig().getVBlocks();
+    int nrOfEl = Game::getConfig().getBlocks();
     double d = w < h ? w / nrOfEl : h / nrOfEl;
 
     elementSiteLen = d * greyBackgroundSprite.getScale().x;
@@ -182,11 +182,11 @@ sf::Sprite PlayState::getFragment(int i, int j) {
 
 void PlayState::InitBlocks() {
     Config& config = Game::getConfig();
-    unplaced.resize(Game::getConfig().getVBlocks());
-    stackHeight.resize(config.getVBlocks());
-    for (unsigned int i = 0; i < config.getVBlocks(); ++i) {
+    unplaced.resize(Game::getConfig().getBlocks());
+    stackHeight.resize(config.getBlocks());
+    for (unsigned int i = 0; i < config.getBlocks(); ++i) {
         stackHeight[i] = 0;
-        for (unsigned int j = 0; j < config.getVBlocks(); ++j)
+        for (unsigned int j = 0; j < config.getBlocks(); ++j)
             unplaced[j].push(getFragment(i, j));
     }
 }
@@ -257,8 +257,8 @@ void PlayState::InitRedBounds(const View &view) {
 
     redRectangle[2].setPosition(leftBegin, 0);
     redRectangle[2].setSize(
-            sf::Vector2f(elementSiteLen * Game::getConfig().getVBlocks(),
-                         elementSiteLen * Game::getConfig().getVBlocks() +
+            sf::Vector2f(elementSiteLen * Game::getConfig().getBlocks(),
+                         elementSiteLen * Game::getConfig().getBlocks() +
                          topBegin));
 
     for (auto& it : redRectangle) {

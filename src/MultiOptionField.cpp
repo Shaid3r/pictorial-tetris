@@ -42,7 +42,7 @@ unsigned int MultiOptionField::selectNext() {
 
 unsigned int MultiOptionField::selectPrevious() {
     if (!options.empty()) {
-        selected_option = (selected_option - 1) % options.size();
+        if (--selected_option < 0) selected_option += options.size();
         setCurrent(selected_option);
     }
     return selected_option;

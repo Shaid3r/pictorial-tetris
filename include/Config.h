@@ -2,8 +2,8 @@
 
 class Config {
 public:
-    void setVBlocks(unsigned int x);
-    unsigned int getVBlocks() const;
+    void setBlocks(unsigned int x);
+    unsigned int getBlocks() const;
     enum LEVEL {
         EASY,
         NORMAL,
@@ -15,8 +15,8 @@ public:
     double getVelocity() const;
     LEVEL level = NORMAL;
 private:
-    float velocity = 0.5;
-    unsigned int verticalBlocks = 4;
+    const float velocity = 0.5;
+    unsigned int blocks = 4;
 };
 
 

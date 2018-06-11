@@ -10,7 +10,7 @@
 
 GameOverState::GameOverState() {
     Config& config = Game::getConfig();
-    finalScore = (1000 * (config.level + 1) * pow(config.getVBlocks(), 2)) / Game::getView().time;
+    finalScore = (1000 * (config.level + 1) * pow(config.getBlocks(), 2)) / Game::getView().time;
 }
 
 GameOverState::~GameOverState() {

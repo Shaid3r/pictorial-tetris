@@ -15,7 +15,7 @@ public:
 private:
     enum FIELDS {
         LEVEL,
-        VBLOCKS,
+        BLOCKS,
         START
     };
 
@@ -26,5 +26,5 @@ private:
     void enter();
 
     std::vector<MultiOptionField> fields;
-    unsigned int selected{0};
+    int selected{0};
 };

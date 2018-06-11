@@ -32,9 +32,9 @@ ConfigState::ConfigState() {
     fields[LEVEL].addOption("HARD");
     fields[LEVEL].setCurrent(1);
 
-    fields[VBLOCKS].setString("Number of blocks");
-    fields[VBLOCKS].addOption("16");
-
+    fields[BLOCKS].setString("Number of blocks");
+    int blocksCount = Game::getConfig().getBlocks();
+    fields[BLOCKS].addOption(std::to_string(blocksCount*blocksCount));
 
     fields[START].setString("Start");
 
@@ -95,16 +95,17 @@ void ConfigState::selectNext() {
 
 void ConfigState::selectPrevious() {
     fields[selected].unselect();
-    selected = (selected - 1) % fields.size();
+    if (--selected < 0) selected += fields.size();
     fields[selected].select();
     updated = true;
 }
 
 void ConfigState::selectLeft() {
     Config &config = Game::getConfig();
-    if (selected == VBLOCKS) {
-        config.setVBlocks(config.getVBlocks() - 1);
-        fields[selected].setOptionString(0, std::to_string(config.getVBlocks() * config.getVBlocks()));
+    if (selected == BLOCKS) {
+        config.setBlocks(config.getBlocks() - 1);
+        fields[selected].setOptionString(0, std::to_string(
+                config.getBlocks() * config.getBlocks()));
     } else
         config.level = static_cast<Config::LEVEL>(fields[selected].selectPrevious());
     updated = true;
@@ -112,9 +113,10 @@ void ConfigState::selectLeft() {
 
 void ConfigState::selectRight() {
     Config &config = Game::getConfig();
-    if (selected == VBLOCKS) {
-        config.setVBlocks(config.getVBlocks() + 1);
-        fields[selected].setOptionString(0, std::to_string(config.getVBlocks() * config.getVBlocks()));
+    if (selected == BLOCKS) {
+        config.setBlocks(config.getBlocks() + 1);
+        fields[selected].setOptionString(0, std::to_string(
+                config.getBlocks() * config.getBlocks()));
     } else
         config.level = static_cast<Config::LEVEL>(fields[selected].selectNext());
     updated = true;

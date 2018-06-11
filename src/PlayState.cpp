@@ -10,8 +10,8 @@ PlayState::PlayState() {
     image = view.getTexture().copyToImage();
     sf::Image greyBackgroundImage = view.getTexture().copyToImage();
 
-    for (int i = 0; i < greyBackgroundImage.getSize().y; ++i)
-        for (int j = 0; j < greyBackgroundImage.getSize().x; ++j)
+    for (unsigned int i = 0; i < greyBackgroundImage.getSize().y; ++i)
+        for (unsigned int j = 0; j < greyBackgroundImage.getSize().x; ++j)
             greyBackgroundImage.setPixel(
                     j, i, toGrayscale(greyBackgroundImage.getPixel(j, i))
             );
@@ -39,7 +39,7 @@ void PlayState::handleInput(sf::Event &event) {
             case sf::Keyboard::Right:
                 position += 1;
                 ht = config.getBlocks() - stackHeight[position] - 1;
-                if (position > config.getBlocks() - 1 ||
+                if (position > static_cast<int>(config.getBlocks()) - 1 ||
                     current.getPosition().y > topBegin + elementSiteLen * ht) {
                     position -= 1;
                 }

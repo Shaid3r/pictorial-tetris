@@ -6,12 +6,11 @@
 #include "StartState.h"
 #include "ConfigState.h"
 
-const sf::Color StartState::COLOR_BACKGROUND{12, 24, 24};
 const std::string  StartState::BTN_TXT = "Select";
 
 StartState::StartState() : selectBtn(BTN_WIDTH, BTN_HEIGHT, BTN_TXT) {
     selectBtn.setPosition((Game::getView().getWidth() - BTN_WIDTH) / 2,
-                          Game::getView().getHeight() * 0.8);
+                          Game::getView().getHeight() * 0.9);
     Game::getView().loadImg2Texture(0);
 }
 
@@ -37,13 +36,15 @@ void StartState::handleInput(sf::Event &event) {
     }
 }
 
-void StartState::update(float) {}
+void StartState::update(float) {
+
+}
 
 void StartState::render() {
 //    if (updated) {
     View &view = Game::getView();
     sf::RenderTarget &target = view.getWindow();
-    target.clear(COLOR_BACKGROUND);
+    target.clear(Game::getView().getBackgroundColor());
 
     sf::Text title("Choose picture", view.getFont(), 40);
     title.setPosition(
@@ -52,9 +53,9 @@ void StartState::render() {
     target.draw(title);
     target.draw(selectBtn);
 
-    sf::Sprite sprite = view.resize(view.getWidth() * 0.5f,
-                                    view.getHeight() * 0.5f);
-    sprite.setPosition(view.getWidth() * 0.25f, view.getHeight() * 0.2f);
+    sf::Sprite sprite = view.resize(view.getTexture(), view.getWidth() * 0.35f,
+                                    view.getWidth() * 0.35f);
+    sprite.setPosition(view.getWidth() * (0.5f - 0.175f), view.getHeight() * 0.2f);
     target.draw(sprite);
 //        updated = false;
 //    }

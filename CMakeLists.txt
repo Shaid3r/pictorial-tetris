@@ -8,7 +8,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-include_directories(include)
+include_directories(include data)
 file(GLOB SOURCES "src/*.cpp")
 
 add_executable(${EXECUTABLE_NAME} ${SOURCES})

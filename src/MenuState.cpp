@@ -1,5 +1,6 @@
 #include <Game.h>
 #include <StartState.h>
+#include <HelpState.h>
 #include "MenuState.h"
 
 MenuState::MenuState() {
@@ -53,10 +54,9 @@ void MenuState::handleInput(sf::Event &event) {
 void MenuState::update(float) {}
 
 void MenuState::render() {
-//    if (updated) {
     View &view = Game::getView();
     sf::RenderTarget &target = view.getWindow();
-    target.clear(COLOR_BACKGROUND);
+    target.clear(Game::getView().getBackgroundColor());
 
     sf::Text title("TETRIS", view.getFont(), 80);
     title.setPosition(
@@ -67,8 +67,6 @@ void MenuState::render() {
     for (auto &button : buttons)
         target.draw(button);
 
-//        updated = false;
-//    }
 }
 
 void MenuState::selectNext() {
@@ -91,7 +89,7 @@ void MenuState::enter() {
             Game::getGSM().set(std::make_unique<StartState>());
             break;
         case MenuState::HELP:
-//            Game::getGSM().set(std::make_unique<HelpState>());
+            Game::getGSM().push(std::make_unique<HelpState>());
             break;
         case MenuState::TOP10:
 //            Game::getGSM().set(std::make_unique<RankingState>());

@@ -1,4 +1,6 @@
 #include <Game.h>
+#include <PlayState.h>
+#include <iostream>
 #include "ConfigState.h"
 
 ConfigState::ConfigState() {
@@ -9,7 +11,7 @@ ConfigState::ConfigState() {
     const int FLD_WIDTH = WIDTH * 0.5;
     const int FLD_HEIGHT = 45;
     const int FLD_TOP_MARGIN = HEIGHT * 0.05f;
-    const int FIELDS_COUNT = 3;
+    const int FIELDS_COUNT = 2;
 
     int startHPos =
             (HEIGHT - FIELDS_COUNT * (FLD_HEIGHT + FLD_TOP_MARGIN)) / 2;
@@ -30,11 +32,9 @@ ConfigState::ConfigState() {
     fields[LEVEL].addOption("HARD");
     fields[LEVEL].setCurrent(1);
 
-    fields[VBLOCKS].setString("Number of vertical blocks");
-    fields[VBLOCKS].addOption("4");
+    fields[VBLOCKS].setString("Number of blocks");
+    fields[VBLOCKS].addOption("16");
 
-    fields[HBLOCKS].setString("Number of horizontal blocks");
-    fields[HBLOCKS].addOption("4");
 
     fields[START].setString("Start");
 
@@ -74,7 +74,7 @@ void ConfigState::update(float) {}
 void ConfigState::render() {
     View &view = Game::getView();
     sf::RenderTarget &target = view.getWindow();
-    target.clear(COLOR_BACKGROUND);
+    target.clear(Game::getView().getBackgroundColor());
 
     sf::Text title("Settings", view.getFont(), 40);
     title.setPosition(
@@ -104,10 +104,7 @@ void ConfigState::selectLeft() {
     Config &config = Game::getConfig();
     if (selected == VBLOCKS) {
         config.setVBlocks(config.getVBlocks() - 1);
-        fields[selected].setOptionString(0, std::to_string(config.getVBlocks()));
-    } else if (selected == HBLOCKS) {
-        config.setHBlocks(config.getHBlocks() - 1);
-        fields[selected].setOptionString(0, std::to_string(config.getHBlocks()));
+        fields[selected].setOptionString(0, std::to_string(config.getVBlocks() * config.getVBlocks()));
     } else
         config.level = static_cast<Config::LEVEL>(fields[selected].selectPrevious());
     updated = true;
@@ -117,16 +114,13 @@ void ConfigState::selectRight() {
     Config &config = Game::getConfig();
     if (selected == VBLOCKS) {
         config.setVBlocks(config.getVBlocks() + 1);
-        fields[selected].setOptionString(0, std::to_string(config.getVBlocks()));
-    } else if (selected == HBLOCKS) {
-        config.setHBlocks(config.getHBlocks() + 1);
-        fields[selected].setOptionString(0, std::to_string(config.getHBlocks()));
+        fields[selected].setOptionString(0, std::to_string(config.getVBlocks() * config.getVBlocks()));
     } else
         config.level = static_cast<Config::LEVEL>(fields[selected].selectNext());
     updated = true;
 }
 
 void ConfigState::enter() {
-//    if (selected_option == 3)
-//    Game::getGSM().push(std::make_unique<PlayState>());
+    if (selected == START)
+        Game::getGSM().push(std::make_unique<PlayState>());
 }

@@ -23,7 +23,6 @@ private:
         EXIT
     };
 
-    const sf::Color COLOR_BACKGROUND{12, 24, 24};
     std::vector<Button> buttons;
     unsigned int selected{0};
 };

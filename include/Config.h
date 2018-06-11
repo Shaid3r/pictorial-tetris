@@ -3,9 +3,7 @@
 class Config {
 public:
     void setVBlocks(unsigned int x);
-    void setHBlocks(unsigned int x);
     unsigned int getVBlocks() const;
-    unsigned int getHBlocks() const;
     enum LEVEL {
         EASY,
         NORMAL,
@@ -13,12 +11,12 @@ public:
     };
 
     static const int MIN_BLOCKS = 2;
-    static const int MAX_BLOCKS = 50;
-
+    static const int MAX_BLOCKS = 10;
+    double getVelocity() const;
     LEVEL level = NORMAL;
 private:
+    float velocity = 0.5;
     unsigned int verticalBlocks = 4;
-    unsigned int horizontalBlocks = 4;
 };
 
 

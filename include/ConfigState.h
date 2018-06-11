@@ -16,7 +16,6 @@ private:
     enum FIELDS {
         LEVEL,
         VBLOCKS,
-        HBLOCKS,
         START
     };
 
@@ -26,7 +25,6 @@ private:
     void selectRight();
     void enter();
 
-    const sf::Color COLOR_BACKGROUND{12, 24, 24};
     std::vector<MultiOptionField> fields;
     unsigned int selected{0};
 };

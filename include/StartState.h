@@ -19,7 +19,6 @@ private:
     static const unsigned int BTN_WIDTH = 200;
     static const unsigned int BTN_HEIGHT = 45;
     static const std::string BTN_TXT;
-    static const sf::Color COLOR_BACKGROUND;
 
     Button selectBtn;
     unsigned int selected{0};

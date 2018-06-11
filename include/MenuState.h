@@ -19,11 +19,9 @@ private:
     enum BUTTONS {
         START,
         HELP,
-        TOP10,
         EXIT
     };
 
-    const sf::Color COLOR_BACKGROUND{12, 24, 24};
     std::vector<Button> buttons;
-    unsigned int selected{0};
+    int selected{0};
 };

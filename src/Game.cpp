@@ -21,6 +21,7 @@ GameStateManager &Game::getGSM() {
 }
 
 void Game::run() {
+    srand((time(0)));
     gsm.set(std::make_unique<MenuState>());
     sf::Clock clock;
     clock.restart();

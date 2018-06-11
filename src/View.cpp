@@ -34,16 +34,7 @@ void View::loadImg2Texture(unsigned int idx) {
         throw std::runtime_error("Cannot load image");
 }
 
-void View::setGrayscale(unsigned int idx) {
-    unsigned int width = img[idx].getSize().x;
-    unsigned int height = img[idx].getSize().y;
-
-    for (unsigned int y = 0; y < height; ++y)
-        for (unsigned int x = 0; x < width; ++x)
-            img[idx].setPixel(x, y, toGrayscale(img[idx].getPixel(x, y)));
-}
-
-sf::Sprite View::resize(float width, float height) {
+sf::Sprite View::resize(sf::Texture& texture, float width, float height) {
     float want = width / height;
     float have = static_cast<float>(texture.getSize().x) / texture.getSize().y;
     sf::Sprite sprite(texture);
@@ -76,8 +67,10 @@ unsigned int View::getWidth() const {
     return desktop.width;
 }
 
-sf::Color View::toGrayscale(const sf::Color &color) {
-    auto avg = static_cast<sf::Uint8>(
-            color.r * 0.12f + color.g * 0.72f + color.b * 0.07f);
-    return {avg, avg, avg};
+sf::Texture &View::getTexture() {
+    return texture;
+}
+
+const sf::Color& View::getBackgroundColor() const {
+    return COLOR_BACKGROUND;
 }

@@ -2,7 +2,7 @@
 
 #include <State.h>
 #include <Button.h>
-#include "MultiOptionField.h"
+#include <MultiOptionField.h>
 
 class ConfigState : public State {
 public:

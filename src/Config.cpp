@@ -1,5 +1,5 @@
-#include "Game.h"
-#include "Config.h"
+#include <Game.h>
+#include <Config.h>
 
 void Config::setBlocks(unsigned int x) {
     if (x > MAX_BLOCKS)

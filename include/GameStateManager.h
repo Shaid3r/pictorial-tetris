@@ -5,7 +5,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "State.h"
+#include <State.h>
 
 
 class GameStateManager {

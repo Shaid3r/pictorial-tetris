@@ -1,7 +1,6 @@
 #include <Game.h>
 #include <PlayState.h>
-#include <iostream>
-#include "ConfigState.h"
+#include <ConfigState.h>
 
 ConfigState::ConfigState() {
     View &view = Game::getView();

@@ -56,6 +56,9 @@ void PlayState::handleInput(sf::Event &event) {
             case sf::Keyboard::P:
                 Game::getGSM().push(std::make_unique<PauseState>());
 
+            default:
+                    break;
+
         }
     }
 }
@@ -69,7 +72,6 @@ void PlayState::update(float dt) {
         } while(unplaced[currentColumn].empty());
 
         current = unplaced[currentColumn].top();
-        unplaced[currentColumn].pop();
         position = config.getBlocks() / 2.0d;
         current.setPosition(leftBegin + position * elementSiteLen,
                             - elementSiteLen);
@@ -94,14 +96,14 @@ void PlayState::update(float dt) {
             stackHeight[currentColumn] += 1;
             isCurrentPlaced = true;
             doubleSpeed = false;
+            unplaced[currentColumn].pop();
             if (placed.size() == pow(config.getBlocks(), 2)) {
                 Game::getGSM().push(std::make_unique<GameOverState>());
             }
         }
         else if (current.getPosition().y >= topBegin + elementSiteLen * ht &&
                  (currentColumn != position || rotation != 0)) {
-            current.setPosition(leftBegin + position * elementSiteLen,
-                                -elementSiteLen);
+            isCurrentPlaced = true;
             doubleSpeed = false;
         }
     }
@@ -114,7 +116,6 @@ void PlayState::render() {
     target.clear(Game::getView().getBackgroundColor());
     target.draw(greyBackgroundSprite);
     target.draw(rightSprite);
-
     target.draw(current);
 
     for (auto it : placed)

@@ -1,6 +1,6 @@
 #include <Game.h>
-#include "State.h"
-#include "GameStateManager.h"
+#include <State.h>
+#include <GameStateManager.h>
 
 void GameStateManager::handleInput(sf::Event &event) {
     states.top()->handleInput(event);

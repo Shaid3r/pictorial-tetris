@@ -1,11 +1,11 @@
 #pragma once
 
-
-#include "State.h"
-#include "View.h"
-#include "Game.h"
 #include <stack>
 #include <vector>
+
+#include <State.h>
+#include <View.h>
+#include <Game.h>
 
 class PlayState : public State {
 public:

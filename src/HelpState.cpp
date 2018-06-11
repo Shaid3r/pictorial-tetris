@@ -1,10 +1,6 @@
-//
-// Created by th3r4tty on 10.06.18.
-//
-
 #include <Game.h>
-#include "State.h"
-#include "HelpState.h"
+#include <State.h>
+#include <HelpState.h>
 
 
 HelpState::~HelpState() {
@@ -20,9 +16,7 @@ void HelpState::handleInput(sf::Event &event) {
     }
 }
 
-void HelpState::update(float dt) {
-
-}
+void HelpState::update(float) {}
 
 void HelpState::render() {
     View &view = Game::getView();

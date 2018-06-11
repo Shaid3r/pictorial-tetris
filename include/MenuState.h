@@ -1,7 +1,7 @@
 #pragma once
 
-#include "State.h"
-#include "Button.h"
+#include <State.h>
+#include <Button.h>
 
 class MenuState : public State {
 public:

@@ -1,5 +1,5 @@
 #include <MenuState.h>
-#include "Game.h"
+#include <Game.h>
 
 const std::string Game::TITLE = "Tetris";
 

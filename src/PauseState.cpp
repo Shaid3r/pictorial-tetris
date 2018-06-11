@@ -1,7 +1,3 @@
-//
-// Created by th3r4tty on 10.06.18.
-//
-
 #include <State.h>
 #include <PauseState.h>
 #include <Game.h>
@@ -19,9 +15,7 @@ void PauseState::handleInput(sf::Event &event) {
     }
 }
 
-void PauseState::update(float) {
-
-}
+void PauseState::update(float) {}
 
 void PauseState::render() {
     View &view = Game::getView();

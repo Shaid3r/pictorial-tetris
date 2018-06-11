@@ -1,10 +1,9 @@
 #include <SFML/Window/Event.hpp>
 #include <MenuState.h>
-#include <iostream>
 
-#include "Game.h"
-#include "StartState.h"
-#include "ConfigState.h"
+#include <Game.h>
+#include <StartState.h>
+#include <ConfigState.h>
 
 const std::string  StartState::BTN_TXT = "Select";
 
@@ -41,7 +40,6 @@ void StartState::update(float) {
 }
 
 void StartState::render() {
-//    if (updated) {
     View &view = Game::getView();
     sf::RenderTarget &target = view.getWindow();
     target.clear(Game::getView().getBackgroundColor());
@@ -57,8 +55,6 @@ void StartState::render() {
                                     view.getWidth() * 0.35f);
     sprite.setPosition(view.getWidth() * (0.5f - 0.175f), view.getHeight() * 0.2f);
     target.draw(sprite);
-//        updated = false;
-//    }
 }
 
 void StartState::selectNext() {

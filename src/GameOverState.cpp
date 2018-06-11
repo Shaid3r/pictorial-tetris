@@ -1,7 +1,3 @@
-//
-// Created by th3r4tty on 09.06.18.
-//
-
 #include <State.h>
 #include <Game.h>
 #include <MenuState.h>

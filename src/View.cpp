@@ -1,7 +1,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "View.h"
-#include "Game.h"
+#include <View.h>
+#include <Game.h>
 
 View::View() {
     desktop = sf::VideoMode().getFullscreenModes()[0];

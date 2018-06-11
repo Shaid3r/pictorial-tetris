@@ -1,7 +1,7 @@
 #include <SFML/System/String.hpp>
 #include <Button.h>
 #include <Game.h>
-#include "MultiOptionField.h"
+#include <MultiOptionField.h>
 
 MultiOptionField::MultiOptionField(float width, float height,
                                    const sf::String &text, unsigned int size,

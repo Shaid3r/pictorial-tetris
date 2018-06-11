@@ -5,9 +5,9 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "GameStateManager.h"
-#include "Config.h"
-#include "View.h"
+#include <GameStateManager.h>
+#include <Config.h>
+#include <View.h>
 
 class Game {
 public:

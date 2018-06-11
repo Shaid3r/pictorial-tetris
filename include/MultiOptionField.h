@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/System/String.hpp>
-#include "Button.h"
+#include <Button.h>
 
 class MultiOptionField : public Button {
 public:

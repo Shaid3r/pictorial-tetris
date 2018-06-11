@@ -1,7 +1,7 @@
 #include <SFML/System/String.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <Game.h>
-#include "Button.h"
+#include <Button.h>
 
 const sf::Color Button::COLOR_SELECTED{255, 0, 0};
 const sf::Color Button::COLOR_DEFAULT{0, 255, 0};

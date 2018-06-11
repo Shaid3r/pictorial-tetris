@@ -2,7 +2,7 @@
 #include <StartState.h>
 #include <HelpState.h>
 #include <iostream>
-#include "MenuState.h"
+#include <MenuState.h>
 
 MenuState::MenuState() {
     View &view = Game::getView();

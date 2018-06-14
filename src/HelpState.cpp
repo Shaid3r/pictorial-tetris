@@ -3,10 +3,6 @@
 #include <HelpState.h>
 
 
-HelpState::~HelpState() {
-
-}
-
 void HelpState::handleInput(sf::Event &event) {
     if (event.type == sf::Event::EventType::KeyPressed) {
         if (event.type == sf::Event::EventType::KeyPressed &&

@@ -9,10 +9,6 @@ GameOverState::GameOverState() {
     finalScore = (1000 * (config.level + 1) * pow(config.getBlocks(), 2)) / Game::getView().time;
 }
 
-GameOverState::~GameOverState() {
-
-}
-
 void GameOverState::handleInput(sf::Event &event) {
     if (event.type == sf::Event::EventType::KeyPressed) {
         if ( event.key.code == sf::Keyboard::Enter) {

@@ -7,11 +7,33 @@
 #include <View.h>
 #include <Game.h>
 
+/**
+ * @brief Reprezentuje stan rozpoczęcia gry.
+ */
 class PlayState : public State {
 public:
+    /**
+     * @brief Konstruuje PlayState.
+     */
     PlayState();
+
+    /**
+     * @brief Przetwarza wejściowe zdarzenia pochodzące od użytkownika.
+     *
+     * @param event Zdarzenie pochodzące od użytkownika.
+     */
     void handleInput(sf::Event &event) override;
+
+    /**
+     * @brief Aktualizuje aktualny stan.
+     *
+     * @param dt Czas renderowania i przetwarzania poprzedniej klatki gry.
+     */
     void update(float dt) override;
+
+    /**
+     * @brief Renderuje stan gry.
+     */
     void render() override;
 
 private:
